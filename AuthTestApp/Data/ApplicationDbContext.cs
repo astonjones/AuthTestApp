@@ -17,6 +17,8 @@ namespace AuthTestApp.Data
 
         public DbSet<Ticket> Ticket { get; set; }
 
+        public DbSet<Hardware> Hardware {  get; set; }
+
     }
 
 }

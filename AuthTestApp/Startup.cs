@@ -47,12 +47,6 @@ namespace AuthTestApp
                     .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddMicrosoftIdentityUI();
-
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("ElevatedRights", policy =>
-                                    policy.RequireRole("Survey Writer", "Administrator"));
-            });
             
             services.AddRazorPages();
         }

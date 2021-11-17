@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace AuthTestApp.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize]
     public class TicketController : Controller
     {
 
@@ -19,6 +19,7 @@ namespace AuthTestApp.Controllers
         {
             _db = db;
         }
+
         public IActionResult Index()
         {
             IEnumerable<Ticket> objList = _db.Ticket;
@@ -50,7 +51,6 @@ namespace AuthTestApp.Controllers
                 }
 
                 obj.Status = "Not Started";
-                
 
                 Console.WriteLine(obj);
 
