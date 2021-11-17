@@ -1,0 +1,5 @@
+﻿Where I left off:
+
+- Need the create route to submit all info for Hardware piece
+- Need to change page to view records
+- Need to deploy to the internet to use on your phone.

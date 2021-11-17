@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AuthTestApp.Models.Ticket>
+﻿@model IEnumerable<AuthTestApp.Models.Hardware>
 
 <div>
     <h1>Hi!</h1>
@@ -31,9 +31,9 @@
                 @foreach (var obj in Model)
                 {
                     <tr>
-                        <td width="30%">@obj.Name</td>
-                        <td width="30%">@obj.Category</td>
-                        <td width="50%">@obj.Description</td>
+                        <td width="30%">@obj.Type</td>
+                        <td width="30%">@obj.Brand</td>
+                        <td width="50%">@obj.Location</td>
                         <td class="w-75 btn-group" role="group">
                             <a asp-controller="Category" asp-route-Id="@obj.Id" asp-action="Edit" class="btn btn-primary mx-2">
                                 Edit

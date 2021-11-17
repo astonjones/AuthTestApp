@@ -27,6 +27,8 @@ namespace AuthTestApp.Controllers
         }
 
         //POST - CREATE
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(Hardware obj)
         {
             if (ModelState.IsValid) {
