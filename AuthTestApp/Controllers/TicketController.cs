@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace AuthTestApp.Controllers
 {
-    [Authorize(Roles = "Survey Writer")]
+    [Authorize(Roles = "Administrator")]
     public class TicketController : Controller
     {
 
