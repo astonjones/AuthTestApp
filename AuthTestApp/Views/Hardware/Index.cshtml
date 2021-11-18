@@ -3,11 +3,11 @@
 <div class="Container p-3">
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class="text-primary">Category List</h2>
+            <h2 class="text-primary">Inventory</h2>
         </div>
         <div class="col-6">
             <a asp-controller="Hardware" asp-action="Create" class="btn btn-primary">
-                Create New Hardware
+                Add New Hardware
             </a>
         </div>
     </div>
@@ -26,16 +26,10 @@
                         Brand
                     </th>
                     <th>
-                        Model Number
+                        Serial No.
                     </th>
                     <th>
                         Location
-                    </th>
-                    <th>
-                        SN
-                    </th>
-                    <th>
-                        Mac Address
                     </th>
                     <th>
                         In_Use
@@ -49,15 +43,14 @@
                     <tr>
                         <td>@obj.Type</td>
                         <td>@obj.Brand</td>
-                        <td>@obj.Model_Number</td>
+                        <td>@obj.SN</td>
                         <td>@obj.Location</td>
-                        <td>@obj.MAC_Address</td>
                         <td>@obj.In_Use</td>
                         <td class="w-75 btn-group" role="group">
-                            <a asp-controller="Hardware" asp-route-Id="@obj.Id" asp-action="Edit" class="btn btn-primary mx-2">
+                            <a asp-controller="Hardware" asp-route-Id="@obj.SN" asp-action="Edit" class="btn btn-primary mx-2">
                                 Edit
                             </a>
-                            <a asp-controller="Hardware" asp-route-Id="@obj.Id" asp-action="Delete" class="btn btn-danger mx-2">
+                            <a asp-controller="Hardware" asp-route-Id="@obj.SN" asp-action="Delete" class="btn btn-danger mx-2">
                                 Delete
                             </a>
                         </td>

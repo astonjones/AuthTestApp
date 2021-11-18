@@ -2,40 +2,96 @@
 @model AuthTestApp.Models.Hardware
 
 <form method="post">
-    <input asp-for="Id" hidden />
+    <input asp-for="SN" hidden />
+    <input asp-for="MAC_Address" hidden/>
     <div class="border p-3">
         <div class="form-group row">
             <h2 class="text-info pl-3">Edit Hardware</h2>
         </div>
-        <div class="row">
-            <div class="col-8">
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Type"></label>
-                    </div>
-                    <div asp-form="Type" class="col-8">
+        <div class="container">
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label asp-for="Type"></label>
+                    <div asp-form="Type">
                         <input asp-for="Type" class="form-control" />
                         <span asp-validation-for="Type" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <div class="col-4">
-                        <label asp-for="Brand"></label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="Brand" />
+                <div class="form-group col-6">
+                    <label asp-for="Brand"></label>
+                    <div>
+                        <input asp-for="Brand" class="form-control" />
                         <span asp-validation-for="Brand" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <div class="col-8 offset-4 row">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label asp-for="Model_Number"></label>
+                    <div asp-form="Type">
+                        <input asp-for="Model_Number" class="form-control" />
+                        <span asp-validation-for="Model_Number" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="Location"></label>
+                    <div>
+                        <input asp-for="Location" class="form-control" />
+                        <span asp-validation-for="Location" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label asp-for="SN"></label>
+                    <div asp-form="Type">
+                        <input asp-for="SN" class="form-control" />
+                        <span asp-validation-for="SN" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label asp-for="Id"></label>
+                    <div asp-form="Type">
+                        <input asp-for="Id" class="form-control" />
+                        <span asp-validation-for="Id" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label asp-for="In_Use"></label>
+                    <div asp-form="Type">
+                        <input asp-for="In_Use" class="form-control" />
+                        <span asp-validation-for="In_Use" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="Status"></label>
+                    <div>
+                        <input asp-for="Status" class="form-control" />
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="MAC_Address"></label>
+                    <div asp-form="Type">
+                        <input asp-for="MAC_Address" class="form-control" />
+                        <span asp-validation-for="MAC_Address" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-8 offset-4 row">
 
-                        <div class="col">
-                            <input type="submit" class="btn btn-info w-100" value="Create"/>
-                        </div>
-                        <div class="col">
-                             <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-sign-out-alt"></i> Back</a>
-                        </div>
+                    <div class="col">
+                        <input type="submit" class="btn btn-info w-100" value="Update" />
+                    </div>
+                    <div class="col">
+                        <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-sign-out-alt"></i> Back</a>
                     </div>
                 </div>
             </div>

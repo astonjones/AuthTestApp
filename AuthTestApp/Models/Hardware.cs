@@ -17,10 +17,8 @@ namespace AuthTestApp.Models
         [Key]
         public string SN { get; set; }
 
-        [Required]
         public float MAC_Address { get; set; }
 
-        [Required]
         public string In_Use { get; set; }
 
         public string Status { get; set; }

@@ -2,6 +2,7 @@
 using AuthTestApp.Data;
 using AuthTestApp.Models;
 using System.Collections.Generic;
+using System;
 
 namespace AuthTestApp.Controllers
 {
@@ -17,7 +18,7 @@ namespace AuthTestApp.Controllers
         public IActionResult Index()
         {
             IEnumerable<Hardware> objList = _db.Hardware;
-            return View();
+            return View(objList);
         }
 
         //GET - CREATE
@@ -33,16 +34,16 @@ namespace AuthTestApp.Controllers
         {
             if (ModelState.IsValid) {
                 _db.Hardware.Add(obj);
-                _db.SaveChanges(); ;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
         }
 
         //GET - EDIT
-        public IActionResult Edit(int? id)
+        public IActionResult Edit(string? id)
         {
-            if (id == null || id == 0)
+            if (id == null )
             {
                 return NotFound();
             }
@@ -60,20 +61,27 @@ namespace AuthTestApp.Controllers
         //POST - EDIT
         public IActionResult Edit(Hardware obj)
         {
-            if (ModelState.IsValid)
+            if (_db.Hardware.Find(obj.SN) == null)
             {
-                _db.Hardware.Update(obj);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            return View(obj);
+                if (ModelState.IsValid)
+                {
+                    _db.Hardware.Update(obj);
+                    _db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View(obj);
+            }
+            else {
+                return RedirectToAction("DuplicateRecord");
+            }
         }
 
         //GET - DELETE
-        public IActionResult Delete(int? id)
+        public IActionResult Delete(string? id)
         {
-            if (id == null || id == 0)
+            if (id == null)
             { 
                 return NotFound();
             }
@@ -89,7 +97,7 @@ namespace AuthTestApp.Controllers
         //POST - DELETE
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteHardware(int? id)
+        public IActionResult DeleteHardware(string id)
         {
             var obj = _db.Hardware.Find(id);
             if (obj == null)
@@ -100,6 +108,11 @@ namespace AuthTestApp.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             
+        }
+
+        public IActionResult DuplicateRecord()
+        {
+            return View();
         }
     }
 }
