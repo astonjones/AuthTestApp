@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AuthTestApp.Data
 {
-    public class ApplicationDbContext : DbContext
+    public partial class ApplicationDbContext : DbContext
     {
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -15,11 +15,11 @@ namespace AuthTestApp.Data
 
         }
 
-        public virtual DbSet<Hardware> Hardwares { get; set; }
-        public virtual DbSet<Ticket> Tickets { get; set; }
-        public virtual DbSet<VicidialApiLog> VicidialApiLogs { get; set; }
-        public virtual DbSet<VicidialCampaign> VicidialCampaigns { get; set; }
-        public virtual DbSet<VicidialCarrierLog> VicidialCarrierLogs { get; set; }
+        public virtual DbSet<Hardware> Hardware { get; set; }
+        public virtual DbSet<Ticket> Ticket { get; set; }
+        public virtual DbSet<VicidialApiLog> VicidialApiLog { get; set; }
+        public virtual DbSet<VicidialCampaign> VicidialCampaign { get; set; }
+        public virtual DbSet<VicidialCarrierLog> VicidialCarrierLog { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
