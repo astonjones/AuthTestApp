@@ -1,0 +1,83 @@
+﻿
+@model AuthTestApp.Models.VicidialCampaign
+
+<div class="border p-3">
+    <div class="form-group row">
+        <h2 class="text-info pl-3">Hardware Details</h2>
+    </div>
+    <div class=" d-flex justify-content-center">
+        <ul class="justify-content-around" style="width: 50%">
+            <li class="list-group-item d-flex justify-content-between">
+                <strong>Api Id</strong>
+                <span>@Html.DisplayFor(model => model.CampaignId)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>User</strong>
+                <span>@Html.DisplayFor(model => model.CampaignName)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Api Date</strong>
+                <span>@Html.DisplayFor(model => model.Active)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Api Script</strong>
+                <span>@Html.DisplayFor(model => model.LeadOrder)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Function</strong>
+                <span>@Html.DisplayFor(model => model.HopperLevel)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Agent User</strong>
+                <span>@Html.DisplayFor(model => model.AutoDialLevel)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Value</strong>
+                <span>@Html.DisplayFor(model => model.NextAgentCall)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Result</strong>
+                <span>@Html.DisplayFor(model => model.LocalCallTime)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Result Reason</strong>
+                <span>@Html.DisplayFor(model => model.DialTimeout)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Source</strong>
+                <span>@Html.DisplayFor(model => model.campaign_cid)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Data</strong>
+                <span>@Html.DisplayFor(model => model.CampaignVdadExten)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Run Time</strong>
+                <span>@Html.DisplayFor(model => model.DropAction)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Web Server</strong>
+                <span>@Html.DisplayFor(model => model.CloserCampaigns)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Api Url</strong>
+                <span>@Html.DisplayFor(model => model.DialMethod)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Api Url</strong>
+                <span>@Html.DisplayFor(model => model.CampaignDescription)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Api Url</strong>
+                <span>@Html.DisplayFor(model => model.CampaignLogindate)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Api Url</strong>
+                <span>@Html.DisplayFor(model => model.CidGroupId)</span>
+            </li>
+        </ul>
+    </div>
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-success mx-2" asp-controller="VicidialApiLog" asp-action="Index">Back</a>
+    </div>
+</div>
