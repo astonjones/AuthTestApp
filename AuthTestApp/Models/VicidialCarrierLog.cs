@@ -7,6 +7,7 @@ namespace AuthTestApp.Models
 {
     public partial class VicidialCarrierLog
     {
+        [Key]
         public double Uniqueid { get; set; }
         public DateTime CallDate { get; set; }
         public string ServerIp { get; set; }

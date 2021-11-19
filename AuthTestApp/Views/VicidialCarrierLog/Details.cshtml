@@ -1,0 +1,69 @@
+﻿
+@model AuthTestApp.Models.VicidialCarrierLog
+
+<div class="border p-3">
+    <div class="form-group row">
+        <h2 class="text-info pl-3">Hardware Details</h2>
+    </div>
+    <div class=" d-flex justify-content-center">
+        <ul class="justify-content-around" style="width: 50%">
+            <li class="list-group-item d-flex justify-content-between">
+                <strong>Api Id</strong>
+                <span>@Html.DisplayFor(model => model.UniqueId)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>User</strong>
+                <span>@Html.DisplayFor(model => model.CallDate)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Api Date</strong>
+                <span>@Html.DisplayFor(model => model.ServerIp)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Api Script</strong>
+                <span>@Html.DisplayFor(model => model.LeadId)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Function</strong>
+                <span>@Html.DisplayFor(model => model.HangupCause)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Agent User</strong>
+                <span>@Html.DisplayFor(model => model.DialStatus)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Value</strong>
+                <span>@Html.DisplayFor(model => model.Channel)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Result</strong>
+                <span>@Html.DisplayFor(model => model.DialTime)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Result Reason</strong>
+                <span>@Html.DisplayFor(model => model.AnsweredTime)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Source</strong>
+                <span>@Html.DisplayFor(model => model.SipHangupCause)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Data</strong>
+                <span>@Html.DisplayFor(model => model.SipHangupReason)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Run Time</strong>
+                <span>@Html.DisplayFor(model => model.CallerCode)</span>
+            </li>
+        </ul>
+    </div>
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-success mx-2" asp-controller="VicidialCarrierLog" asp-action="Index">Back</a>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

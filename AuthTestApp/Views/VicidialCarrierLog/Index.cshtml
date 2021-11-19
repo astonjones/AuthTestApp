@@ -1,17 +1,17 @@
-﻿@model PaginatedList<AuthTestApp.Models.VicidialApiLog>
+﻿@model PaginatedList<AuthTestApp.Models.VicidialCarrierLog>
 
 
 <div class="Container p-3">
     <div class="row justify-content-between py-4">
         <div class="col-4">
-            <h2 class="text-primary">ViciDial Api Log Table</h2>
+            <h2 class="text-primary">ViciDial Carrier Log Table</h2>
         </div>
     </div>
 
     <form>
         <div class="form-actions no-color">
             <p>
-                Search by Result or Result Reason: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                Search by DialStatus or Dial Time: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
                 <input type="submit" value="Search" class="btn btn-sm btn-info" />
                 <a asp-action="Index" class=" btn btn-sm btn-warning">Back to Full List</a>
             </p>
@@ -55,28 +55,32 @@
                         <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Date</a>
                     </th>
                     <th>
-                        <a asp-action="Index" asp-route-sortOrder="@ViewData["ResultSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Result</a>
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["DialStatusSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Dial Status</a>
                     </th>
                     <th>
-                        <a asp-action="Index" asp-route-sortOrder="@ViewData["ResultReasonSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Result Reason</a>
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["DialTimeSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Dial Time</a>
                     </th>
                     <th>
-                        Source
+                        Hang up reason
+                    </th>
+                    <th>
+                        Caller code
                     </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var obj in Model)
                 {
-                    <tr>
-                        <td>@obj.ApiDate</td>
-                        <td>@obj.Result</td>
-                        <td>@obj.ResultReason</td>
-                        <td>@obj.Source</td>
-                        <td class="w-75 btn-group" role="group">
-                            <a asp-controller="VicidialApiLog" asp-route-Id="@obj.ApiId" asp-action="Details" class="mx-1">Details</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>@obj.CallDate</td>
+                    <td>@obj.Dialstatus</td>
+                    <td>@obj.DialTime</td>
+                    <td>@obj.SipHangupReason</td>
+                    <td>@obj.CallerCode</td>
+                    <td class="w-75 btn-group" role="group">
+                        <a asp-controller="VicidialApiLog" asp-route-Id="@obj.ApiId" asp-action="Details" class="mx-1">Details</a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
