@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -7,6 +8,7 @@ namespace AuthTestApp.Models
 {
     public partial class VicidialApiLog
     {
+        [Key]
         public string ApiId { get; set; }
         public int User { get; set; }
         public DateTime ApiDate { get; set; }

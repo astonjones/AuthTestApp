@@ -68,7 +68,7 @@ namespace AuthTestApp.Data
 
             modelBuilder.Entity<VicidialApiLog>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.ApiId);
 
                 entity.ToTable("vicidial_api_log");
 

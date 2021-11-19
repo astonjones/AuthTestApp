@@ -19,4 +19,11 @@
     <PackageReference Include="Microsoft.Owin.Security.OpenIdConnect" Version="4.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\VicidialApiLog\Details.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

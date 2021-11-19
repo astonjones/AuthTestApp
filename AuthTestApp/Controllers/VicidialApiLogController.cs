@@ -4,6 +4,8 @@ using AuthTestApp.Models;
 using AuthTestApp.Data;
 using System.Collections.Generic;
 using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace AuthTestApp.Controllers
 {
@@ -23,7 +25,7 @@ namespace AuthTestApp.Controllers
                     int? pageNumber)
         {
             ViewData["CurrentSort"] = sortOrder;
-            ViewData["DateSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Date" : "";
+            ViewData["DateSortParm"] = sortOrder =="Date" ? "date_desc" : "Date";
             ViewData["ResultSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Result" : "";
             ViewData["ResultReasonSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ResultReason" : "";
 
@@ -36,18 +38,21 @@ namespace AuthTestApp.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                items = items.Where(i => i.ApiDate.Contains(searchString) || i.Result.Contains(searchString) || i.ResultReason.Contains(searchString));
+                items = items.Where(i => i.Result.Contains(searchString) || i.ResultReason.Contains(searchString));
             }
 
             switch (sortOrder)
             {
-                case "Type":
+                case "Date":
+                    items = items.OrderBy(i => i.ApiDate);
+                    break;
+                case "date_desc":
                     items = items.OrderByDescending(i => i.ApiDate);
                     break;
-                case "Location":
+                case "Result":
                     items = items.OrderBy(i => i.Result);
                     break;
-                case "Status":
+                case "ResultReason":
                     items = items.OrderBy(i => i.ResultReason);
                     break;
                 default:
@@ -56,7 +61,7 @@ namespace AuthTestApp.Controllers
             }
 
             int pageSize = 50;
-            return View(await PaginatedList<Hardware>.CreateAsync(items.AsNoTracking(), pageNumber ?? 1, pageSize));
+            return View(await PaginatedList<VicidialApiLog>.CreateAsync(items.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         public IActionResult Details(string? id)

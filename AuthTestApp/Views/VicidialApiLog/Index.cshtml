@@ -74,9 +74,7 @@
                         <td>@obj.ResultReason</td>
                         <td>@obj.Source</td>
                         <td class="w-75 btn-group" role="group">
-                            <a asp-controller="Hardware" asp-route-Id="@obj.SN" asp-action="Edit" class="mx-1">Edit</a> |
-                            <a asp-controller="Hardware" asp-route-Id="@obj.SN" asp-action="Details" class="mx-1">Details</a> |
-                            <a asp-controller="Hardware" asp-route-Id="@obj.SN" asp-action="Delete" class="mx-1">Delete</a>
+                            <a asp-controller="VicidialApiLog" asp-route-Id="@obj.ApiId" asp-action="Details" class="mx-1">Details</a>
                         </td>
                     </tr>
                 }
