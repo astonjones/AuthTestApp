@@ -2,7 +2,10 @@
 using AuthTestApp.Data;
 using AuthTestApp.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace AuthTestApp.Controllers
 {
@@ -15,10 +18,51 @@ namespace AuthTestApp.Controllers
             _db = db;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(
+            string sortOrder,
+            string currentFilter,
+            string searchString,
+            int? pageNumber)
         {
-            IEnumerable<Hardware> objList = _db.Hardware;
-            return View(objList);
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["TypeSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Type" : "";
+            ViewData["LocationSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Location" : "";
+            ViewData["StatusSortParm"] = String.IsNullOrEmpty(sortOrder) ? "Status" : "";
+            ViewData["InUseSortParm"] = String.IsNullOrEmpty(sortOrder) ? "In_Use" : "";
+
+            if (searchString != null){ pageNumber = 1; }
+            else { searchString = currentFilter; }
+
+            ViewData["CurrentFilter"] = searchString;
+
+            var items = from i in _db.Hardware select i;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                items = items.Where(i => i.Type.Contains(searchString) || i.Location.Contains(searchString) || i.SN.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "Type":
+                    items = items.OrderByDescending(i => i.Type);
+                    break;
+                case "Location":
+                    items = items.OrderBy(i => i.Location);
+                    break;
+                case "Status":
+                    items = items.OrderBy(i => i.Status);
+                    break;
+                case "In_Use":
+                    items = items.OrderBy(i => i.In_Use);
+                    break;
+                default:
+                    items = items.OrderBy(i => i.Location);
+                    break;
+            }
+
+            int pageSize = 50;
+            return View(await PaginatedList<Hardware>.CreateAsync(items.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         //GET - CREATE
@@ -32,12 +76,20 @@ namespace AuthTestApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Hardware obj)
         {
-            if (ModelState.IsValid) {
-                _db.Hardware.Add(obj);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
+            if (_db.Hardware.Find(obj.SN) == null)
+            {
+                if (ModelState.IsValid)
+                {
+                    _db.Hardware.Add(obj);
+                    _db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("DuplicateRecord");
+            }
         }
 
         //GET - EDIT
@@ -61,21 +113,14 @@ namespace AuthTestApp.Controllers
         //POST - EDIT
         public IActionResult Edit(Hardware obj)
         {
-            if (_db.Hardware.Find(obj.SN) == null)
+            if (ModelState.IsValid)
             {
-
-                if (ModelState.IsValid)
-                {
-                    _db.Hardware.Update(obj);
-                    _db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-
-                return View(obj);
+                _db.Hardware.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            else {
-                return RedirectToAction("DuplicateRecord");
-            }
+
+            return View(obj);
         }
 
         //GET - DELETE
@@ -108,6 +153,22 @@ namespace AuthTestApp.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             
+        }
+
+        //GET - EDIT
+        public IActionResult Details(string? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var obj = _db.Hardware.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
         }
 
         public IActionResult DuplicateRecord()

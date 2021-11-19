@@ -1,0 +1,54 @@
+﻿
+@model AuthTestApp.Models.Hardware
+
+<div class="border p-3">
+    <div class="form-group row">
+        <h2 class="text-info pl-3">Hardware Details</h2>
+    </div>
+    <div class=" d-flex justify-content-center">
+        <ul class="justify-content-around" style="width: 50%">
+            <li class="list-group-item d-flex justify-content-between">
+                <strong>Type</strong>
+                <span>@Html.DisplayFor(model => model.Type)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Brand</strong>
+                <span>@Html.DisplayFor(model => model.Brand)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Model Number</strong>
+                <span>@Html.DisplayFor(model => model.Model_Number)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Location</strong>
+                <span>@Html.DisplayFor(model => model.Location)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Serial Number</strong>
+                <span>@Html.DisplayFor(model => model.SN)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>In Use</strong>
+                <span>@Html.DisplayFor(model => model.In_Use)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Status</strong>
+                <span>@Html.DisplayFor(model => model.Status)</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <strong>Mac Address</strong>
+                <span>@Html.DisplayFor(model => model.MAC_Address)</span>
+            </li>
+        </ul>
+    </div>
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-warning mx-2" asp-controller="Hardware" asp-route-Id="@Model.SN" asp-action="Edit">Edit Hardware</a>
+        <a class="btn btn-success mx-2" asp-controller="Hardware" asp-action="Index">Back</a>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

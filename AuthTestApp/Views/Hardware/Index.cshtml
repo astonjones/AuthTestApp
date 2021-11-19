@@ -1,26 +1,63 @@
-﻿@model IEnumerable<AuthTestApp.Models.Hardware>
+﻿@model PaginatedList<AuthTestApp.Models.Hardware>
+
 
 <div class="Container p-3">
-    <div class="row pt-4">
-        <div class="col-6">
+    <div class="row justify-content-between py-4">
+        <div class="col-4">
             <h2 class="text-primary">Inventory</h2>
         </div>
-        <div class="col-6">
+        <div class="col-4 d-flex justify-content-center">
             <a asp-controller="Hardware" asp-action="Create" class="btn btn-primary">
                 Add New Hardware
             </a>
         </div>
     </div>
 
+    <form>
+        <div class="form-actions no-color">
+            <p>
+                Search by Type, SN or Location: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-sm btn-info" />
+                <a asp-action="Index" class=" btn btn-sm btn-warning">Back to Full List</a>
+            </p>
+        </div>
+    </form>
+
     <br /><br />
 
-    @if(Model.Count() > 0)
+    @if (Model.Count() > 0)
     {
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>@Model.PageSize Records Per Page | Page - @Model.PageIndex out of @Model.TotalPages</p>
+                <p>Total Records: @Model.RecordCount</p>
+            </div>
+            <div>
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex - 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-outline-secondary @prevDisabled">
+                    Previous
+                </a>
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex + 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-outline-secondary @nextDisabled">
+                    Next
+                </a>
+            </div>
+        </div>
+
         <table class="table table-bordered table-striped" style="width:100%">
             <thead>
                 <tr>
                     <th>
-                        Type
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["TypeSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Type</a>
                     </th>
                     <th>
                         Brand
@@ -29,35 +66,60 @@
                         Serial No.
                     </th>
                     <th>
-                        Location
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["LocationSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Location</a>
                     </th>
                     <th>
-                        In_Use
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["StatusSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Status</a>
+                    </th>
+                    <th>
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["InUseSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">In Use</a>
                     </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach(var obj in Model)
+                @foreach (var obj in Model)
                 {
                     <tr>
                         <td>@obj.Type</td>
                         <td>@obj.Brand</td>
                         <td>@obj.SN</td>
                         <td>@obj.Location</td>
+                        <td>@obj.Status</td>
                         <td>@obj.In_Use</td>
                         <td class="w-75 btn-group" role="group">
-                            <a asp-controller="Hardware" asp-route-Id="@obj.SN" asp-action="Edit" class="btn btn-primary mx-2">
-                                Edit
-                            </a>
-                            <a asp-controller="Hardware" asp-route-Id="@obj.SN" asp-action="Delete" class="btn btn-danger mx-2">
-                                Delete
-                            </a>
+                            <a asp-controller="Hardware" asp-route-Id="@obj.SN" asp-action="Edit" class="mx-1">Edit</a> |
+                            <a asp-controller="Hardware" asp-route-Id="@obj.SN" asp-action="Details" class="mx-1">Details</a> |
+                            <a asp-controller="Hardware" asp-route-Id="@obj.SN" asp-action="Delete" class="mx-1">Delete</a>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
+
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>@Model.PageSize Records Per Page | Page - @Model.PageIndex out of @Model.TotalPages</p>
+                <p>Total Records: @Model.RecordCount</p>
+            </div>
+            <div>
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex - 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-outline-secondary @prevDisabled">
+                    Previous
+                </a>
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex + 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-outline-secondary @nextDisabled">
+                    Next
+                </a>
+            </div>
+        </div>
+
     }
     else
     {
