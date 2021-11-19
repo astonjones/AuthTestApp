@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collection.Generic;
-using System;
+﻿using AuthTestApp.Data;
+using AuthTestApp.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace AuthTestApp.Controllers
 {
@@ -15,18 +16,18 @@ namespace AuthTestApp.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Ticket> objList = _db.Ticket;
+            IEnumerable<VicidialCampaign> objList = _db.VicidialCampaign;
             return View(objList);
         }
 
         //GET - Edit
         public IActionResult Details(string? id)
         {
-            if (id == null || id == 0)
+            if (id == null)
             {
                 return NotFound();
             }
-            var obj = _db.Ticket.Find(id);
+            var obj = _db.VicidialCampaign.Find(id);
             if (obj == null)
             {
                 return NotFound();
