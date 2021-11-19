@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AuthTestApp.Models;
 using AuthTestApp.Data;
+using System.Threading.Tasks;
+using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace AuthTestApp.Controllers
 {
@@ -33,7 +37,7 @@ namespace AuthTestApp.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                items = items.Where(i => i.DialStatus.Contains(searchString) || i.DialTime.Contains(searchString));
+                items = items.Where(i => i.Dialstatus.Contains(searchString) || i.DialTime.Contains(searchString));
             }
 
             switch (sortOrder)
@@ -45,7 +49,7 @@ namespace AuthTestApp.Controllers
                     items = items.OrderByDescending(i => i.CallDate);
                     break;
                 case "DialStatus":
-                    items = items.OrderBy(i => i.DialStatus);
+                    items = items.OrderBy(i => i.Dialstatus);
                     break;
                 case "DialTime":
                     items = items.OrderBy(i => i.DialTime);
