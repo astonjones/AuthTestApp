@@ -64,6 +64,8 @@ namespace AuthTestApp.Controllers
             return View(await PaginatedList<VicidialApiLog>.CreateAsync(items.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
+        //Going to need a new route for strictly graph/reporting purpose
+
         public IActionResult Details(string? id)
         { 
             if (id == null)

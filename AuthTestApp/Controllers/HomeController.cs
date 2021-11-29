@@ -39,7 +39,7 @@ namespace AuthTestApp.Controllers
             _graphScopes = configuration.GetValue<string>("DownstreamApi:Scopes")?.Split(' ');
         }
 
-        [AuthorizeForScopes(ScopeKeySection = "DownstreamApi:Scopes")]
+        //[AuthorizeForScopes(ScopeKeySection = "DownstreamApi:Scopes")]
         public async Task<IActionResult> Index()
         {
             User currentUser = null;

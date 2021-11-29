@@ -21,6 +21,9 @@ namespace AuthTestApp.Data
         public virtual DbSet<VicidialCampaign> VicidialCampaign { get; set; }
         public virtual DbSet<VicidialCarrierLog> VicidialCarrierLog { get; set; }
 
+        //USE WHEN DB connection is set up.
+        //public virtual DbSet<Lead> Lead { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
