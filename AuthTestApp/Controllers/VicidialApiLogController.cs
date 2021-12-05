@@ -61,6 +61,7 @@ namespace AuthTestApp.Controllers
             }
 
             int pageSize = 50;
+            //need to also or only return an array of all of the X vs Y values for the charts
             return View(await PaginatedList<VicidialApiLog>.CreateAsync(items.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 

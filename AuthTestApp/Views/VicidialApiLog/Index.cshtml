@@ -7,6 +7,10 @@
         </div>
     </div>
 
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
     <form>
         <div class="form-actions no-color">
             <p>
@@ -109,3 +113,49 @@
         <p>No Records exists here</p>
     }
 </div>
+
+@section Scripts{
+    @{
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+
+        ];
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'ViciDial API Table',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45, 150, 50, 66, 10, 25],
+            }]
+        };
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+
+        var myChart = new  Chart(
+            document.getElementById('myChart'),
+            config
+        );
+
+        </script>
+
+    }
+}

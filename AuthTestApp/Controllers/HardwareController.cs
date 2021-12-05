@@ -95,7 +95,7 @@ namespace AuthTestApp.Controllers
         //GET - EDIT
         public IActionResult Edit(string? id)
         {
-            if (id == null )
+            if (id == null)
             {
                 return NotFound();
             }
