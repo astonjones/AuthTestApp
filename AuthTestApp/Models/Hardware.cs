@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-#nullable disable
-
 namespace AuthTestApp.Models
 {
     public partial class Hardware
@@ -23,5 +21,9 @@ namespace AuthTestApp.Models
         public Char In_Use { get; set; }
         [Required]
         public string Status { get; set; }
+        public string? Warranty { get; set; }
+        public DateTime? Warranty_Exp_Date { get; set; }
+        public string? Vendor { get; set; }
+        public string? Comments { get; set; }
     }
 }

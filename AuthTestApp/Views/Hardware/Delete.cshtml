@@ -1,20 +1,20 @@
 ﻿
 @model AuthTestApp.Models.Hardware
 
-<form method="post" asp-action="DeleteHardware">
+<form method="post">
     <div class="border p-3">
         <div class="form-group row">
             <h2 class="text-info pl-3">Delete Hardware</h2>
         </div>
         <div class="container">
             <div class="form-row">
-                <div class="form-group col-6">
+                <div class="form-group col-lg-6 col-md-12">
                     <label asp-for="Type"></label>
                     <div asp-form="Type">
                         <input asp-for="Type" disabled class="form-control" />
                     </div>
                 </div>
-                <div class="form-group col-6">
+                <div class="form-group col-lg-6 col-md-12">
                     <label asp-for="Brand"></label>
                     <div>
                         <input asp-for="Brand" disabled class="form-control" />
@@ -22,13 +22,13 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-6">
+                <div class="form-group col-lg-6 col-md-12">
                     <label asp-for="Model_Number"></label>
                     <div asp-form="Type">
                         <input asp-for="Model_Number" disabled class="form-control" />
                     </div>
                 </div>
-                <div class="form-group col-6">
+                <div class="form-group col-lg-6 col-md-12">
                     <label asp-for="Location"></label>
                     <div>
                         <input asp-for="Location" disabled class="form-control" />
@@ -36,21 +36,21 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-6">
+                <div class="form-group col-lg-6 col-md-12">
                     <label asp-for="SN"></label>
                     <div asp-form="Type">
-                        <input asp-for="SN" disabled class="form-control" />
+                        <input asp-for="SN" id="ID" name="ID" disabled class="form-control" />
                     </div>
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-6">
+                <div class="form-group col-lg-6 col-md-12">
                     <label asp-for="In_Use"></label>
                     <div asp-form="Type">
                         <input asp-for="In_Use" disabled class="form-control" />
                     </div>
                 </div>
-                <div class="form-group col-6">
+                <div class="form-group col-lg-6 col-md-12">
                     <label asp-for="Status"></label>
                     <div>
                         <input asp-for="Status" disabled class="form-control" />
@@ -58,10 +58,40 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group">
+                <div class="form-group col-lg-6 col-md-12">
                     <label asp-for="MAC_Address"></label>
                     <div asp-form="Type">
                         <input disabled asp-for="MAC_Address" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg-6 col-md-12">
+                    <label asp-for="Warranty"></label>
+                    <div>
+                        <input disabled asp-for="Warranty" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group col-lg-6 col-md-12">
+                    <label asp-for="Warranty_Exp_Date"></label>
+                    <div>
+                        <input disabled asp-for="Warranty_Exp_Date" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg-6 col-md-12">
+                    <label asp-for="Vendor"></label>
+                    <div>
+                        <input disabled asp-for="Vendor" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label asp-for="Comments"></label>
+                    <div>
+                        <textarea disabled asp-for="Comments" class="form-control"></textarea>
                     </div>
                 </div>
             </div>

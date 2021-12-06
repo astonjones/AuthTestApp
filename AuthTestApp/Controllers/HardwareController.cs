@@ -142,7 +142,8 @@ namespace AuthTestApp.Controllers
         //POST - DELETE
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteHardware(string id)
+        [ActionName("Delete")]
+        public IActionResult DeleteHardware(string? id)
         {
             var obj = _db.Hardware.Find(id);
             if (obj == null)
