@@ -37,6 +37,17 @@ namespace AuthTestApp.Controllers
 
             var items = from i in _db.Hardware select i;
 
+            if (pageNumber == 1 || pageNumber == null)
+            {
+                ViewData["PRNInUseComputers"] = items.Where(i => i.Location == "PRN" && i.In_Use == 'Y' && i.Type == "PC").Count();
+                ViewData["PRNGoodComputers"] = items.Where(i => i.Location == "PRN" && i.In_Use == 'N' && i.Type == "PC" && i.Status == "Good").Count();
+                ViewData["PRNBadComputers"] = items.Where(i => i.Location == "PRN" && i.Type == "PC" && i.Status == "Bad").Count();
+
+                ViewData["PRNInUseMonitors"] = items.Where(i => i.Location == "PRN" && i.In_Use == 'Y' && i.Type == "Monitor").Count();
+                ViewData["PRNGoodMonitors"] = items.Where(i => i.Location == "PRN" && i.In_Use == 'N' && i.Type == "Monitor" && i.Status == "Good").Count();
+                ViewData["PRNBadMonitors"] = items.Where(i => i.Location == "PRN" && i.Type == "Monitor" && i.Status == "Bad").Count();
+            }
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 items = items.Where(i => i.Type.Contains(searchString) || i.Location.Contains(searchString) || i.SN.Contains(searchString));

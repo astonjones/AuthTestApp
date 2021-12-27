@@ -2,6 +2,43 @@
 
 
 <div class="Container p-3">
+    <div>
+        <h3>PRN Inventory Overview</h3>
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        In Use
+                    </th>
+                    <th>
+                        Not In Use & Good
+                    </th>
+                    <th>
+                        Bad
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>PCs</td>
+                    <td>@ViewData["PRNInUseComputers"]</td>
+                    <td>@ViewData["PRNGoodComputers"]</td>
+                    <td>@ViewData["PRNBadComputers"]</td>
+                </tr>
+                <tr>
+                    <td>Monitors</td>
+                    <td>@ViewData["PRNInUseMonitors"]</td>
+                    <td>@ViewData["PRNGoodMonitors"]</td>
+                    <td>@ViewData["PRNBadMonitors"]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
     <div class="row justify-content-between py-4">
         <div class="col-4">
             <h2 class="text-primary">Inventory</h2>
