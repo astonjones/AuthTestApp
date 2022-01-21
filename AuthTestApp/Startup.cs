@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using AuthTestApp.Data;
+using Microsoft.AspNetCore.Authentication;
 
 namespace AuthTestApp
 {
@@ -48,7 +49,8 @@ namespace AuthTestApp
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddMicrosoftIdentityUI();
             
-            services.AddRazorPages();
+            services.AddRazorPages().AddMvcOptions(options => {}).AddMicrosoftIdentityUI();
+            services.AddAuthorization(options=>{options.FallbackPolicy = options.DefaultPolicy;});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,6 +79,7 @@ namespace AuthTestApp
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }

@@ -6,9 +6,11 @@ using System.Linq;
 using System;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AuthTestApp.Controllers
 {
+    [Authorize]
     public class HardwareController : Controller
     {
         private readonly ApplicationDbContext _db;
