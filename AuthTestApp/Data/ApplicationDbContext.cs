@@ -16,7 +16,6 @@ namespace AuthTestApp.Data
         }
 
         public virtual DbSet<Hardware> Hardware { get; set; }
-        public virtual DbSet<Ticket> Ticket { get; set; }
 
         //USE WHEN DB connection is set up.
         //public virtual DbSet<Lead> Lead { get; set; }
@@ -25,7 +24,6 @@ namespace AuthTestApp.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=.;Database=TicketTest;Trusted_Connection=True;MultipleActiveResultSets=True");
             }
         }
@@ -49,21 +47,6 @@ namespace AuthTestApp.Data
                 entity.Property(e => e.MAC_Address).HasColumnName("MAC_Address");
 
                 entity.Property(e => e.Model_Number).HasColumnName("Model_Number");
-            });
-
-            modelBuilder.Entity<Ticket>(entity =>
-            {
-                entity.ToTable("Ticket");
-
-                entity.Property(e => e.Category).IsRequired();
-
-                entity.Property(e => e.Description).IsRequired();
-
-                entity.Property(e => e.Email).IsRequired();
-
-                entity.Property(e => e.Location).IsRequired();
-
-                entity.Property(e => e.Name).IsRequired();
             });
 
             OnModelCreatingPartial(modelBuilder);

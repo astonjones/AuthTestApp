@@ -1,13 +1,16 @@
 {
   "dependencies": {
+    "identityapp1": {
+      "type": "identityapp.aad"
+    },
+    "secrets1": {
+      "type": "secrets.user"
+    },
     "mssql1": {
       "secretStore": "LocalSecretsFile",
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/prninventorydbserver/databases/PRNInventory_db",
       "type": "mssql.azure",
       "connectionId": "ConnectionStrings:DefaultConnection"
-    },
-    "identityapp1": {
-      "type": "identityapp.aad"
     }
   }
 }

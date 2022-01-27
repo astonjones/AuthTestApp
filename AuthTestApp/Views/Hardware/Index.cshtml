@@ -2,9 +2,10 @@
 
 
 <div class="Container p-3">
-    <div>
+    @if(Model.PageIndex == 1){
+        <div>
         <h3>PRN Inventory Overview</h3>
-        <table class="table table-bordered table-striped" style="width:100%">
+        <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>
@@ -19,7 +20,6 @@
                     <th>
                         Bad
                     </th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -38,15 +38,16 @@
             </tbody>
         </table>
     </div>
+    }
 
     <div class="row justify-content-between py-4">
         <div class="col-4">
             <h2 class="text-primary">Inventory</h2>
         </div>
         <div class="col-4 d-flex justify-content-center">
-            <a asp-controller="Hardware" asp-action="Create" class="btn btn-primary">
-                Add New Hardware
-            </a>
+            <div>
+                <a asp-controller="Hardware" asp-action="Create" class="btn btn-primary">Add New Hardware</a>
+            </div>
         </div>
     </div>
 
@@ -55,7 +56,7 @@
             <p>
                 Search by Type, SN or Location: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
                 <input type="submit" value="Search" class="btn btn-sm btn-info" />
-                <a asp-action="Index" class=" btn btn-sm btn-warning">Back to Full List</a>
+                <a asp-action="Index" class=" btn btn-sm btn-warning from-control">Back to Full List</a>
             </p>
         </div>
     </form>
@@ -90,7 +91,7 @@
             </div>
         </div>
 
-        <table class="table table-bordered table-striped" style="width:100%">
+        <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>
@@ -111,7 +112,6 @@
                     <th>
                         <a asp-action="Index" asp-route-sortOrder="@ViewData["InUseSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">In Use</a>
                     </th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -124,7 +124,7 @@
                         <td>@obj.Location</td>
                         <td>@obj.Status</td>
                         <td>@obj.In_Use</td>
-                        <td class="w-75 btn-group" role="group">
+                        <td class="btn-group" role="group">
                             <a asp-controller="Hardware" asp-route-Id="@obj.SN" asp-action="Edit" class="mx-1">Edit</a> |
                             <a asp-controller="Hardware" asp-route-Id="@obj.SN" asp-action="Details" class="mx-1">Details</a> |
                             <a asp-controller="Hardware" asp-route-Id="@obj.SN" asp-action="Delete" class="mx-1">Delete</a>

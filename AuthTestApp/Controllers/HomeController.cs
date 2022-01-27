@@ -23,38 +23,13 @@ namespace AuthTestApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private readonly GraphServiceClient _graphServiceClient;
-
-        private string[] _graphScopes = new[] { "user.read" };
-
-        public HomeController(ILogger<HomeController> logger,
-                            IConfiguration configuration,
-                            GraphServiceClient graphServiceClient)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _graphServiceClient = graphServiceClient;
-
-            // Capture the Scopes for Graph that were used in the original request for an Access token (AT) for MS Graph as
-            // they'd be needed again when requesting a fresh AT for Graph during claims challenge processing
-            _graphScopes = configuration.GetValue<string>("DownstreamApi:Scopes")?.Split(' ');
         }
 
-        //[AuthorizeForScopes(ScopeKeySection = "DownstreamApi:Scopes")]
         public async Task<IActionResult> Index()
         {
-            User currentUser = null;
-
-            try
-            {
-                currentUser = await _graphServiceClient.Me.Request().GetAsync();
-            }
-            catch
-            {
-                currentUser = null;
-            }
-
-            ViewData["Me"] = currentUser;
-
             return View();
         }
 
@@ -68,9 +43,10 @@ namespace AuthTestApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
         public IActionResult TableSelect()
         {
-            return View(); 
+            return View();
         }
 
     }

@@ -50,6 +50,7 @@ namespace AuthTestApp.Controllers
                 ViewData["PRNBadMonitors"] = items.Where(i => i.Location == "PRN" && i.Type == "Monitor" && i.Status == "Bad").Count();
             }
 
+            //Can search by attributes placed in this block
             if (!String.IsNullOrEmpty(searchString))
             {
                 items = items.Where(i => i.Type.Contains(searchString) || i.Location.Contains(searchString) || i.SN.Contains(searchString));
